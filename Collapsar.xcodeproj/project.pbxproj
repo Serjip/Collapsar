@@ -18,6 +18,9 @@
 		D20AB5FD18940A6E00450202 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D20AB5DC18940A6E00450202 /* Cocoa.framework */; };
 		D20AB60518940A6E00450202 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D20AB60318940A6E00450202 /* InfoPlist.strings */; };
 		D20AB60718940A6E00450202 /* CollapsarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D20AB60618940A6E00450202 /* CollapsarTests.m */; };
+		D20AB61118941A4B00450202 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D20AB61018941A4B00450202 /* QuartzCore.framework */; };
+		D20AB6131894352200450202 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D20AB6121894352200450202 /* Social.framework */; };
+		D20AB6151894356500450202 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D20AB6141894356400450202 /* Accounts.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +53,9 @@
 		D20AB60218940A6E00450202 /* CollapsarTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CollapsarTests-Info.plist"; sourceTree = "<group>"; };
 		D20AB60418940A6E00450202 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D20AB60618940A6E00450202 /* CollapsarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollapsarTests.m; sourceTree = "<group>"; };
+		D20AB61018941A4B00450202 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D20AB6121894352200450202 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		D20AB6141894356400450202 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +63,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D20AB6151894356500450202 /* Accounts.framework in Frameworks */,
+				D20AB6131894352200450202 /* Social.framework in Frameworks */,
+				D20AB61118941A4B00450202 /* QuartzCore.framework in Frameworks */,
 				D20AB5DD18940A6E00450202 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -95,6 +104,9 @@
 		D20AB5DB18940A6E00450202 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D20AB6141894356400450202 /* Accounts.framework */,
+				D20AB6121894352200450202 /* Social.framework */,
+				D20AB61018941A4B00450202 /* QuartzCore.framework */,
 				D20AB5DC18940A6E00450202 /* Cocoa.framework */,
 				D20AB5FB18940A6E00450202 /* XCTest.framework */,
 				D20AB5DE18940A6E00450202 /* Other Frameworks */,
@@ -464,6 +476,7 @@
 				D20AB60C18940A6E00450202 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D20AB60D18940A6E00450202 /* Build configuration list for PBXNativeTarget "CollapsarTests" */ = {
 			isa = XCConfigurationList;
@@ -472,6 +485,7 @@
 				D20AB60F18940A6E00450202 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
