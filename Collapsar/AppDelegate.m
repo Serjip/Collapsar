@@ -20,54 +20,39 @@
     
     _accountStore = [[ACAccountStore alloc] init];
     
-    ACAccountType *twitterType =
-    [self.accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+    ACAccountType *twitterType = [self.accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
     
     NSLog(@"%@",[self.accountStore accountsWithAccountType:twitterType]);
     
     
+    
     [self.fontPopup addItemsWithTitles:[[NSFontManager sharedFontManager] availableFontFamilies]];
 
+    
+    
 }
 
 
 - (IBAction)setImage:(id)sender {
-    
-    
-    NSString * text = [self.textView string];
-    
-    NSFont *font = [[NSFontManager sharedFontManager] fontWithFamily:[[self.fontPopup selectedItem] title]
-                                                              traits:0
-                                                              weight:5
-                                                                size:[[[self.sizePopup selectedItem] title] floatValue]];
-    
-    
-    
-    
-    NSDictionary *attributes = @{NSFontAttributeName : font,NSForegroundColorAttributeName:[self.color color]};
-    
 
-    NSLog(@"%@",attributes);
-
-//    NSLog(@"%f  %f",[text sizeWithAttributes:attributes].width,[text sizeWithAttributes:attributes].height);
-    
-    NSSize size = NSMakeSize([text sizeWithAttributes:attributes].width , [text sizeWithAttributes:attributes].height);
-    
+    NSSize size = NSMakeSize([[self.textView attributedString] size].width , [[self.textView attributedString] size].height);
     NSImage * im = [[NSImage alloc] initWithSize:size];
-    
     [im lockFocus];
-
-    [text drawInRect:NSMakeRect(0, 0, size.width, size.height) withAttributes:attributes];
-    
+    [[self.textView attributedString] drawInRect:NSMakeRect(0, 0, size.width, size.height)];
     [im unlockFocus];
-    
     [self.imageView setImage:im];
-    
     [[im TIFFRepresentation] writeToFile:@"/Users/serji/Desktop/foo.tiff" atomically:NO];
     
-    [self postImage:im withStatus:@"Hello there"];
-    
+    [self postImage:im withStatus:[self trimMessageWithString:[self.textView string]]];
+}
 
+-(NSString*)trimMessageWithString:(NSString*)str{
+    if ([str length]>140-15) {
+        str=[str substringToIndex:140-15];
+        str=[str stringByAppendingString:@"..."];
+    }
+    str=[str stringByAppendingString:@" #Collapsar"];
+    return str;
 }
 
 
@@ -90,15 +75,6 @@
                 NSLog(@"[SUCCESS!] Created Tweet with ID: %@", postResponseData[@"id_str"]);
             }
             else {
-                
-                
-                
-                NSDictionary *postResponseData =
-                [NSJSONSerialization JSONObjectWithData:responseData
-                                                options:NSJSONReadingMutableContainers
-                                                  error:NULL];
-                NSLog(@"%@",postResponseData);
-                
                 
                 NSLog(@"[ERROR] Server responded: status code %ld %@", (long)statusCode,
                       [NSHTTPURLResponse localizedStringForStatusCode:statusCode]);
