@@ -74,9 +74,14 @@
                 [NSJSONSerialization JSONObjectWithData:responseData
                                                 options:NSJSONReadingMutableContainers
                                                   error:NULL];
+                
                 NSLog(@"[SUCCESS!] Created Tweet with ID: %@", postResponseData[@"id_str"]);
-            }
-            else {
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.textView setString:@""];
+                });
+                
+            }else {
                 
                 NSDictionary *postResponseData =
                 [NSJSONSerialization JSONObjectWithData:responseData
@@ -161,7 +166,7 @@
 }
 
 - (IBAction)makeATweet:(id)sender{
-    
+    [self.textView setString:@""];
 }
 - (IBAction)setImage:(id)sender {
     
@@ -171,6 +176,11 @@
 //    [[NSWorkspace sharedWorkspace] openURL:[NSURL fileURLWithPath:@"/System/Library/PreferencePanes/InternetAccounts.prefPane"]];
     
     NSSize size = NSMakeSize([[self.textView attributedString] size].width , [[self.textView attributedString] size].height);
+    
+    NSArray *arr = [[self.textView string] componentsSeparatedByString:@"\n"];
+    
+    
+    NSLog(@"%@",arr);
     NSImage * im = [[NSImage alloc] initWithSize:size];
     [im lockFocus];
     [[self.textView attributedString] drawInRect:NSMakeRect(0, 0, size.width, size.height)];
