@@ -18,37 +18,39 @@
 {
     // Insert code here to initialize your application
     
-    _accountStore = [[ACAccountStore alloc] init];
+    [self setUserlist];
     
-    ACAccountType *twitterType = [self.accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
-    
-    NSLog(@"%@",[self.accountStore accountsWithAccountType:twitterType]);
-    
-    
+    NSLog(@"Settings:%@",[Settings sharedInstance]);
     
     [self.fontPopup addItemsWithTitles:[[NSFontManager sharedFontManager] availableFontFamilies]];
 
     
+    for (int i=8; i<73; ++i)
+        [self.sizePopup addItemWithTitle:[NSString stringWithFormat:@"%i pt",i]];
+
     
+    NSFont * font =[Settings sharedInstance].settings.font;
+    [self.sizePopup selectItemWithTitle:[NSString stringWithFormat:@"%i pt",(int)font.pointSize]];
+    [self.fontPopup selectItemWithTitle:font.familyName];
+    [self.textView setFont:font];
+    
+    [self.color setColor:[Settings sharedInstance].settings.textColor];
+    [self.textView setTextColor:[Settings sharedInstance].settings.textColor];
 }
 
 
-- (IBAction)setImage:(id)sender {
-
-    NSSize size = NSMakeSize([[self.textView attributedString] size].width , [[self.textView attributedString] size].height);
-    NSImage * im = [[NSImage alloc] initWithSize:size];
-    [im lockFocus];
-    [[self.textView attributedString] drawInRect:NSMakeRect(0, 0, size.width, size.height)];
-    [im unlockFocus];
-    [self.imageView setImage:im];
-    [[im TIFFRepresentation] writeToFile:@"/Users/serji/Desktop/foo.tiff" atomically:NO];
+-(void) setUserlist{
+    _accountStore = [[ACAccountStore alloc] init];
+    ACAccountType *twitterType = [self.accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
     
-    [self postImage:im withStatus:[self trimMessageWithString:[self.textView string]]];
+    if ([[self.accountStore accountsWithAccountType:twitterType] count]<1) {
+        NSLog(@"NEED TO LOGIN");
+    }
 }
 
 -(NSString*)trimMessageWithString:(NSString*)str{
-    if ([str length]>140-15) {
-        str=[str substringToIndex:140-15];
+    if ([str length]>(140-40)) {
+        str=[str substringToIndex:140-40];
         str=[str stringByAppendingString:@"..."];
     }
     str=[str stringByAppendingString:@" #Collapsar"];
@@ -75,6 +77,12 @@
                 NSLog(@"[SUCCESS!] Created Tweet with ID: %@", postResponseData[@"id_str"]);
             }
             else {
+                
+                NSDictionary *postResponseData =
+                [NSJSONSerialization JSONObjectWithData:responseData
+                                                options:NSJSONReadingMutableContainers
+                                                  error:NULL];
+                NSLog(@"%@",postResponseData);
                 
                 NSLog(@"[ERROR] Server responded: status code %ld %@", (long)statusCode,
                       [NSHTTPURLResponse localizedStringForStatusCode:statusCode]);
@@ -119,6 +127,57 @@
     [self.accountStore requestAccessToAccountsWithType:twitterType
                                                options:NULL
                                             completion:accountStoreHandler];
+}
+
+#pragma mark actions
+- (IBAction)fontPopupAction:(id)sender {
+    CGFloat fontSize= [self.sizePopup indexOfSelectedItem]+8;
+    NSString * familyName=[sender titleOfSelectedItem];
+    NSFont * font = [NSFont fontWithName:familyName size:fontSize];
+    [self.textView setFont:font];
+    
+    [Settings sharedInstance].settings.font=font;
+    [[Settings sharedInstance] saveSettings];
+}
+
+- (IBAction)fontSizePopupAction:(id)sender {
+    CGFloat fontSize= [sender indexOfSelectedItem]+8;
+    NSString * familyName=[self.fontPopup titleOfSelectedItem];
+    NSFont * font = [NSFont fontWithName:familyName size:fontSize];
+    [self.textView setFont:font];
+    
+    [Settings sharedInstance].settings.font=font;
+    [[Settings sharedInstance] saveSettings];
+}
+
+- (IBAction)colorAction:(id)sender {
+    [self.textView setTextColor:[sender color]];
+    
+    [Settings sharedInstance].settings.textColor=[sender color];
+    [[Settings sharedInstance] saveSettings];
+}
+
+- (IBAction)usersPopupAction:(id)sender {
+}
+
+- (IBAction)makeATweet:(id)sender{
+    
+}
+- (IBAction)setImage:(id)sender {
+    
+    if ([[self.textView string] length]<2)
+        return;
+    
+//    [[NSWorkspace sharedWorkspace] openURL:[NSURL fileURLWithPath:@"/System/Library/PreferencePanes/InternetAccounts.prefPane"]];
+    
+    NSSize size = NSMakeSize([[self.textView attributedString] size].width , [[self.textView attributedString] size].height);
+    NSImage * im = [[NSImage alloc] initWithSize:size];
+    [im lockFocus];
+    [[self.textView attributedString] drawInRect:NSMakeRect(0, 0, size.width, size.height)];
+    [im unlockFocus];
+    [self.imageView setImage:im];
+//    [[im TIFFRepresentation] writeToFile:@"/Users/serji/Desktop/foo.tiff" atomically:NO];
+//    [self postImage:im withStatus:[self trimMessageWithString:[self.textView string]]];
 }
 
 @end

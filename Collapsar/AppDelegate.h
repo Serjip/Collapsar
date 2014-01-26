@@ -7,11 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import <Quartz/Quartz.h>
+#import "Settings.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate,NSSharingServicePickerDelegate>
 @property (weak) IBOutlet NSPopUpButton *fontPopup;
 @property (weak) IBOutlet NSPopUpButton *sizePopup;
+@property (weak) IBOutlet NSPopUpButton *userPopup;
 
 @property (assign) IBOutlet NSWindow *window;
 @property (unsafe_unretained) IBOutlet NSTextView *textView;
@@ -20,5 +21,11 @@
 
 @property (nonatomic, strong) ACAccountStore *accountStore;
 
+- (IBAction)fontPopupAction:(id)sender;
+- (IBAction)fontSizePopupAction:(id)sender;
+- (IBAction)colorAction:(id)sender;
+- (IBAction)usersPopupAction:(id)sender;
+- (IBAction)makeATweet:(id)sender;
 - (IBAction)setImage:(id)sender;
+
 @end

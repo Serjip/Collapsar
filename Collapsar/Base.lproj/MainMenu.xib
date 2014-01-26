@@ -656,9 +656,9 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aDI-Cw-dWF">
-                        <rect key="frame" x="384" y="273" width="82" height="32"/>
+                        <rect key="frame" x="392" y="296" width="77" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Twit it" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iMt-RX-xyQ">
+                        <buttonCell key="cell" type="push" title="Tweet" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iMt-RX-xyQ">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -672,65 +672,53 @@
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="top" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" id="SQw-tT-h4k"/>
                     </imageView>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="azE-xe-OH6">
-                        <rect key="frame" x="18" y="427" width="147" height="26"/>
+                        <rect key="frame" x="12" y="300" width="147" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="8ov-Gt-70M">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
                             <menu key="menu" title="OtherViews" id="M1F-AU-kSi"/>
                         </popUpButtonCell>
+                        <connections>
+                            <action selector="fontPopupAction:" target="494" id="Suh-4A-lgm"/>
+                        </connections>
                     </popUpButton>
                     <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iPL-7j-m8k">
-                        <rect key="frame" x="361" y="428" width="44" height="23"/>
+                        <rect key="frame" x="218" y="302" width="24" height="23"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <connections>
+                            <action selector="colorAction:" target="494" id="jpX-lC-3N1"/>
+                        </connections>
                     </colorWell>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qBj-rI-EVR">
-                        <rect key="frame" x="181" y="427" width="153" height="26"/>
+                        <rect key="frame" x="162" y="300" width="51" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="dvj-i0-iTG">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
-                            <menu key="menu" title="OtherViews" id="mt6-9U-DyC">
-                                <items>
-                                    <menuItem title="5.0" id="fH8-jf-ISp">
-                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                    </menuItem>
-                                    <menuItem title="10.0" id="TEg-Zm-eMp">
-                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                    </menuItem>
-                                    <menuItem title="12.0" id="qxz-L8-H9K">
-                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                    </menuItem>
-                                    <menuItem title="15.0" id="DAv-9M-nce">
-                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                    </menuItem>
-                                    <menuItem title="20.0" id="lKn-1L-Itv">
-                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                    </menuItem>
-                                    <menuItem title="25.0" id="Raz-IG-8kg">
-                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                    </menuItem>
-                                </items>
-                            </menu>
+                            <menu key="menu" title="OtherViews" id="mt6-9U-DyC"/>
                         </popUpButtonCell>
+                        <connections>
+                            <action selector="fontSizePopupAction:" target="494" id="OGX-Je-Ypk"/>
+                        </connections>
                     </popUpButton>
-                    <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LCD-fp-Zee">
-                        <rect key="frame" x="20" y="321" width="440" height="94"/>
+                    <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LCD-fp-Zee">
+                        <rect key="frame" x="0.0" y="333" width="480" height="138"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <clipView key="contentView" ambiguous="YES" misplaced="YES" id="OmJ-OG-K9i">
-                            <rect key="frame" x="1" y="1" width="438" height="92"/>
+                            <rect key="frame" x="0.0" y="0.0" width="480" height="138"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <textView ambiguous="YES" importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="frz-mo-WWJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="438" height="92"/>
+                                <textView ambiguous="YES" importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="frz-mo-WWJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="480" height="138"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="438" height="92"/>
-                                    <size key="maxSize" width="463" height="10000000"/>
+                                    <size key="minSize" width="480" height="138"/>
+                                    <size key="maxSize" width="486" height="10000000"/>
                                     <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="438" height="92"/>
-                                    <size key="maxSize" width="463" height="10000000"/>
+                                    <size key="minSize" width="480" height="138"/>
+                                    <size key="maxSize" width="486" height="10000000"/>
                                 </textView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -740,10 +728,28 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="KRE-Tm-U1Q">
-                            <rect key="frame" x="423" y="1" width="16" height="92"/>
+                            <rect key="frame" x="464" y="0.0" width="16" height="138"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
+                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b1w-q0-bGw">
+                        <rect key="frame" x="248" y="301" width="75" height="26"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="fdU-zs-lsU">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <menu key="menu" title="OtherViews" id="Qnk-4J-bWT">
+                                <items>
+                                    <menuItem title="Item 1" id="S6C-Z5-JAU"/>
+                                    <menuItem title="Item 2" id="XIB-31-F9H"/>
+                                    <menuItem title="Item 3" id="5kH-qS-qLW"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                        <connections>
+                            <action selector="usersPopupAction:" target="494" id="U5a-tK-Vgm"/>
+                        </connections>
+                    </popUpButton>
                 </subviews>
             </view>
         </window>
@@ -754,6 +760,7 @@
                 <outlet property="imageView" destination="haE-aa-t33" id="eC8-uM-CuS"/>
                 <outlet property="sizePopup" destination="qBj-rI-EVR" id="jaD-oU-ViP"/>
                 <outlet property="textView" destination="frz-mo-WWJ" id="piP-6n-7e5"/>
+                <outlet property="userPopup" destination="b1w-q0-bGw" id="xYM-uu-w4D"/>
                 <outlet property="window" destination="371" id="532"/>
             </connections>
         </customObject>
