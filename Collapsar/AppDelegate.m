@@ -38,19 +38,23 @@
     [self.textView setTextColor:[Settings sharedInstance].settings.textColor];
 }
 
-
 -(void) setUserlist{
     _accountStore = [[ACAccountStore alloc] init];
     ACAccountType *twitterType = [self.accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
     
     if ([[self.accountStore accountsWithAccountType:twitterType] count]<1) {
         NSLog(@"NEED TO LOGIN");
+    }else{
+        for (id account in [self.accountStore accountsWithAccountType:twitterType]){
+            [self.userPopup addItemWithTitle:[NSString stringWithFormat:@"@%@",[account username]]];
+        }
     }
 }
 
 -(NSString*)trimMessageWithString:(NSString*)str{
-    if ([str length]>(140-40)) {
-        str=[str substringToIndex:140-40];
+    
+    if ([str length]>(140-55)) {
+        str=[str substringToIndex:140-55];
         str=[str stringByAppendingString:@"..."];
     }
     str=[str stringByAppendingString:@" #Collapsar"];
@@ -101,7 +105,7 @@
     ACAccountStoreRequestAccessCompletionHandler accountStoreHandler =
     ^(BOOL granted, NSError *error) {
         if (granted) {
-            NSArray *accounts = [self.accountStore accountsWithAccountType:twitterType];
+            
             NSURL *url = [NSURL URLWithString:@"https://api.twitter.com"
                           @"/1.1/statuses/update_with_media.json"];
             NSDictionary *params = @{@"status" : status};
@@ -120,7 +124,7 @@
                              withName:@"media[]"
                                  type:@"image/png"
                              filename:@"image.png"];
-            [request setAccount:[accounts lastObject]];
+            [request setAccount:[self currentAccount]];
             [request performRequestWithHandler:requestHandler];
         }
         else {
@@ -132,6 +136,23 @@
     [self.accountStore requestAccessToAccountsWithType:twitterType
                                                options:NULL
                                             completion:accountStoreHandler];
+}
+
+-(ACAccount*)currentAccount{
+    ACAccountType *twitterType =
+    [self.accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+    NSArray *accounts = [self.accountStore accountsWithAccountType:twitterType];
+    
+    ACAccount * currentAcc;
+    NSString * username = [[self.userPopup titleOfSelectedItem] substringFromIndex:1];
+    for (id account in accounts) {
+        if ([[account username] isEqualToString:username]) {
+            currentAcc=account;
+        }
+    }
+    
+    
+    return currentAcc;
 }
 
 #pragma mark actions
@@ -166,7 +187,12 @@
 }
 
 - (IBAction)makeATweet:(id)sender{
-    [self.textView setString:@""];
+    
+    if([self.heightOfSettings constant]==0){
+        [[self.heightOfSettings animator] setConstant:50];
+    }else{
+        [[self.heightOfSettings animator] setConstant:0];
+    }
 }
 
 

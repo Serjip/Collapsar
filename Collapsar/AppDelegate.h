@@ -20,6 +20,7 @@
 @property (weak) IBOutlet NSColorWell *color;
 
 @property (nonatomic, strong) ACAccountStore *accountStore;
+@property (weak) IBOutlet NSLayoutConstraint *heightOfSettings;
 
 - (IBAction)fontPopupAction:(id)sender;
 - (IBAction)fontSizePopupAction:(id)sender;
