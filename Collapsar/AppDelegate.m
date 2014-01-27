@@ -44,10 +44,17 @@
     
     if ([[self.accountStore accountsWithAccountType:twitterType] count]<1) {
         NSLog(@"NEED TO LOGIN");
+        
+        [self.login setHidden:NO];
+        [self.userPopup setHidden:YES];
     }else{
+        
         for (id account in [self.accountStore accountsWithAccountType:twitterType]){
             [self.userPopup addItemWithTitle:[NSString stringWithFormat:@"@%@",[account username]]];
         }
+        
+        [self.login setHidden:YES];
+        [self.userPopup setHidden:NO];
     }
 }
 
@@ -200,8 +207,6 @@
     
     if ([[self.textView string] length]<2)
         return;
-    //    [[NSWorkspace sharedWorkspace] openURL:[NSURL fileURLWithPath:@"/System/Library/PreferencePanes/InternetAccounts.prefPane"]];
-    
     
     NSMutableArray * arr = [[NSMutableArray alloc] init];
     NSLayoutManager *layoutManager = [self.textView layoutManager];
@@ -240,11 +245,14 @@
     [im lockFocus];
     [attrString drawInRect:NSMakeRect(0, 0, size.width, size.height)];
     [im unlockFocus];
-    [self.imageView setImage:im];
-
+    
+//    [self.imageView setImage:im];
     //[[im TIFFRepresentation] writeToFile:@"/Users/serji/Desktop/foo.tiff" atomically:NO];
     
     [self postImage:im withStatus:[self trimMessageWithString:[self.textView string]]];
 }
 
+- (IBAction)loginAct:(id)sender {
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL fileURLWithPath:@"/System/Library/PreferencePanes/InternetAccounts.prefPane"]];
+}
 @end

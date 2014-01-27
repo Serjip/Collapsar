@@ -16,9 +16,9 @@
 
 @property (assign) IBOutlet NSWindow *window;
 @property (unsafe_unretained) IBOutlet NSTextView *textView;
-@property (weak) IBOutlet NSImageView *imageView;
 @property (weak) IBOutlet NSColorWell *color;
 
+@property (weak) IBOutlet NSButton *login;
 @property (nonatomic, strong) ACAccountStore *accountStore;
 @property (weak) IBOutlet NSLayoutConstraint *heightOfSettings;
 
@@ -28,5 +28,6 @@
 - (IBAction)usersPopupAction:(id)sender;
 - (IBAction)makeATweet:(id)sender;
 - (IBAction)setImage:(id)sender;
+- (IBAction)loginAct:(id)sender;
 
 @end
