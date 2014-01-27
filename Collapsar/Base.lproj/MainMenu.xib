@@ -649,10 +649,10 @@
         <window title="Collapsar" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="371">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="480" height="190"/>
+            <rect key="contentRect" x="335" y="390" width="480" height="409"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1058"/>
             <view key="contentView" id="372">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="190"/>
+                <rect key="frame" x="0.0" y="0.0" width="480" height="409"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aDI-Cw-dWF">
@@ -711,21 +711,21 @@
                             <action selector="fontSizePopupAction:" target="494" id="OGX-Je-Ypk"/>
                         </connections>
                     </popUpButton>
-                    <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LCD-fp-Zee">
-                        <rect key="frame" x="0.0" y="41" width="480" height="149"/>
+                    <scrollView ambiguous="YES" misplaced="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LCD-fp-Zee">
+                        <rect key="frame" x="0.0" y="258" width="480" height="151"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <clipView key="contentView" id="OmJ-OG-K9i">
-                            <rect key="frame" x="0.0" y="0.0" width="480" height="149"/>
+                        <clipView key="contentView" ambiguous="YES" misplaced="YES" id="OmJ-OG-K9i">
+                            <rect key="frame" x="0.0" y="0.0" width="480" height="151"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <textView importsGraphics="NO" richText="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="frz-mo-WWJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="480" height="149"/>
+                                <textView ambiguous="YES" importsGraphics="NO" richText="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="frz-mo-WWJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="480" height="151"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="480" height="149"/>
+                                    <size key="minSize" width="480" height="151"/>
                                     <size key="maxSize" width="486" height="10000000"/>
                                     <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="480" height="149"/>
+                                    <size key="minSize" width="480" height="151"/>
                                     <size key="maxSize" width="486" height="10000000"/>
                                 </textView>
                             </subviews>
@@ -736,10 +736,15 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="KRE-Tm-U1Q">
-                            <rect key="frame" x="464" y="0.0" width="16" height="149"/>
+                            <rect key="frame" x="464" y="0.0" width="16" height="151"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bbI-nu-RDo">
+                        <rect key="frame" x="73" y="79" width="334" height="136"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" id="KG1-b9-ucO"/>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="iPL-7j-m8k" secondAttribute="bottom" constant="10" id="2li-Gw-Jj0"/>
@@ -749,7 +754,6 @@
                     <constraint firstItem="LCD-fp-Zee" firstAttribute="leading" secondItem="372" secondAttribute="leading" id="QnL-Bj-Nfm"/>
                     <constraint firstItem="iPL-7j-m8k" firstAttribute="leading" secondItem="qBj-rI-EVR" secondAttribute="trailing" constant="8" id="UIv-YP-nxj"/>
                     <constraint firstAttribute="bottom" secondItem="qBj-rI-EVR" secondAttribute="bottom" constant="10" id="Uc1-67-4SE"/>
-                    <constraint firstItem="azE-xe-OH6" firstAttribute="top" secondItem="LCD-fp-Zee" secondAttribute="bottom" constant="10" id="YPf-Lf-Y1Y"/>
                     <constraint firstItem="LCD-fp-Zee" firstAttribute="top" secondItem="372" secondAttribute="top" id="cDx-Bw-OG7"/>
                     <constraint firstItem="qBj-rI-EVR" firstAttribute="leading" secondItem="azE-xe-OH6" secondAttribute="trailing" constant="8" id="eM3-3Z-InY"/>
                     <constraint firstAttribute="trailing" secondItem="aDI-Cw-dWF" secondAttribute="trailing" constant="10" id="fp3-Ka-kqf"/>
@@ -761,6 +765,7 @@
             <connections>
                 <outlet property="color" destination="iPL-7j-m8k" id="UUg-kz-UKn"/>
                 <outlet property="fontPopup" destination="azE-xe-OH6" id="vUn-25-arl"/>
+                <outlet property="imageView" destination="bbI-nu-RDo" id="noV-xR-XM5"/>
                 <outlet property="sizePopup" destination="qBj-rI-EVR" id="jaD-oU-ViP"/>
                 <outlet property="textView" destination="frz-mo-WWJ" id="piP-6n-7e5"/>
                 <outlet property="window" destination="371" id="532"/>

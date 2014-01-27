@@ -168,26 +168,62 @@
 - (IBAction)makeATweet:(id)sender{
     [self.textView setString:@""];
 }
+
+
+
 - (IBAction)setImage:(id)sender {
     
     if ([[self.textView string] length]<2)
         return;
-    
-//    [[NSWorkspace sharedWorkspace] openURL:[NSURL fileURLWithPath:@"/System/Library/PreferencePanes/InternetAccounts.prefPane"]];
-    
-    NSSize size = NSMakeSize([[self.textView attributedString] size].width , [[self.textView attributedString] size].height);
-    
-    NSArray *arr = [[self.textView string] componentsSeparatedByString:@"\n"];
+    //    [[NSWorkspace sharedWorkspace] openURL:[NSURL fileURLWithPath:@"/System/Library/PreferencePanes/InternetAccounts.prefPane"]];
     
     
-    NSLog(@"%@",arr);
+    NSMutableArray * arr = [[NSMutableArray alloc] init];
+    NSLayoutManager *layoutManager = [self.textView layoutManager];
+    NSInteger numberOfLines, index, numberOfGlyphs = [layoutManager numberOfGlyphs];
+    NSRange lineRange;
+    for (numberOfLines = 0, index = 0; index < numberOfGlyphs; numberOfLines++){
+        
+        
+        //NSLog(@"index %u char %c",index,[[self.textView string] characterAtIndex:index]);
+        if (index>0) {
+            
+            if ([[self.textView string] characterAtIndex:index-1]!=10) {
+                [arr addObject:@(index-1)];
+            }
+            
+            //NSLog(@"-1 index %u char %hu",index-1,[[self.textView string] characterAtIndex:index-1]);
+        }
+        
+        (void) [layoutManager lineFragmentRectForGlyphAtIndex:index
+                                               effectiveRange:&lineRange];
+        index = NSMaxRange(lineRange);
+    }
+    
+    int num=0;
+    NSMutableString *newString=[NSMutableString stringWithString:[self.textView string]];
+    for (id index in arr) {
+        [newString insertString:@"\n" atIndex:[index integerValue]+num+1];
+        ++num;
+    }
+    
+    NSDictionary *attrsDictionary =@{NSFontAttributeName:self.textView.font,
+                                     NSForegroundColorAttributeName:self.textView.textColor};
+
+    NSAttributedString *attrString =
+    [[NSAttributedString alloc] initWithString:newString
+                                    attributes:attrsDictionary];
+    
+    NSSize size = NSMakeSize([attrString size].width , [attrString size].height);
     NSImage * im = [[NSImage alloc] initWithSize:size];
     [im lockFocus];
-    [[self.textView attributedString] drawInRect:NSMakeRect(0, 0, size.width, size.height)];
+    [attrString drawInRect:NSMakeRect(0, 0, size.width, size.height)];
     [im unlockFocus];
     [self.imageView setImage:im];
-//    [[im TIFFRepresentation] writeToFile:@"/Users/serji/Desktop/foo.tiff" atomically:NO];
-//    [self postImage:im withStatus:[self trimMessageWithString:[self.textView string]]];
+
+    [[im TIFFRepresentation] writeToFile:@"/Users/serji/Desktop/foo.tiff" atomically:NO];
+    
+    [self postImage:im withStatus:[self trimMessageWithString:[self.textView string]]];
 }
 
 @end
