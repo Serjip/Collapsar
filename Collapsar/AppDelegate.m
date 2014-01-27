@@ -114,12 +114,12 @@
             NSData *imageData = [image TIFFRepresentation];
             NSBitmapImageRep *imageRep = [NSBitmapImageRep imageRepWithData:imageData];
             NSDictionary *imageProps = [NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:1.0] forKey:NSImageCompressionFactor];
-            imageData = [imageRep representationUsingType:NSJPEGFileType properties:imageProps];
+            imageData = [imageRep representationUsingType:NSPNGFileType properties:imageProps];
             
             [request addMultipartData:imageData
                              withName:@"media[]"
-                                 type:@"image/jpeg"
-                             filename:@"image.jpg"];
+                                 type:@"image/png"
+                             filename:@"image.png"];
             [request setAccount:[accounts lastObject]];
             [request performRequestWithHandler:requestHandler];
         }
@@ -170,7 +170,6 @@
 }
 
 
-
 - (IBAction)setImage:(id)sender {
     
     if ([[self.textView string] length]<2)
@@ -184,15 +183,11 @@
     NSRange lineRange;
     for (numberOfLines = 0, index = 0; index < numberOfGlyphs; numberOfLines++){
         
-        
-        //NSLog(@"index %u char %c",index,[[self.textView string] characterAtIndex:index]);
         if (index>0) {
             
             if ([[self.textView string] characterAtIndex:index-1]!=10) {
                 [arr addObject:@(index-1)];
             }
-            
-            //NSLog(@"-1 index %u char %hu",index-1,[[self.textView string] characterAtIndex:index-1]);
         }
         
         (void) [layoutManager lineFragmentRectForGlyphAtIndex:index
@@ -221,7 +216,7 @@
     [im unlockFocus];
     [self.imageView setImage:im];
 
-    [[im TIFFRepresentation] writeToFile:@"/Users/serji/Desktop/foo.tiff" atomically:NO];
+    //[[im TIFFRepresentation] writeToFile:@"/Users/serji/Desktop/foo.tiff" atomically:NO];
     
     [self postImage:im withStatus:[self trimMessageWithString:[self.textView string]]];
 }
