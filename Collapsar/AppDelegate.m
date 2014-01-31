@@ -77,32 +77,46 @@
 }
 
 -(void)awakeFromNib{
-    [[self.makeATweetBtn cell] setKBButtonType:BButtonTypeSuccess];
+    
 }
 
--(void) checkUserTwitterAccounts{
+-(BOOL) checkUserTwitterAccounts{
     _accountStore = [[ACAccountStore alloc] init];
     ACAccountType *twitterType = [self.accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
     
     if ([[self.accountStore accountsWithAccountType:twitterType] count]<1) {
         
         [self.userPopup removeAllItems];
+        [self chageActionTweetButton:NO];
+        
+        return NO;
     
     }else{
+        
+        [self chageActionTweetButton:YES];
         
         for (id account in [self.accountStore accountsWithAccountType:twitterType]){
             [self.userPopup addItemWithTitle:[NSString stringWithFormat:@"@%@",[account username]]];
         }
         
-        //[self.login setHidden:YES];
-        //[self.userPopup setHidden:NO];
+        return YES;
     }
 }
 
-
--(void) setMakeATweetButtonColor:(BOOL)flag{
-    
+-(void) chageActionTweetButton:(BOOL)flag{
+//    if (flag){
+//        [[self.makeATweetBtn cell] setKBButtonType:BButtonTypeSuccess];
+//        [self.makeATweetBtn setTitle:@"Tweet"];
+//        [self.makeATweetBtn setTarget:self];
+//        [self.makeATweetBtn setAction:@selector(makeATweetBtn)];
+//    }else{
+//        [[self.makeATweetBtn cell] setKBButtonType:BButtonTypeDanger];
+//        [self.makeATweetBtn setTitle:@"Login"];
+//        [self.makeATweetBtn setTarget:self];
+//        [self.makeATweetBtn setAction:@selector(loginToTwitterAccount:)];
+//    }
 }
+
 
 -(NSString*)trimMessageWithString:(NSString*)str{
     
@@ -246,10 +260,11 @@
     [[Settings sharedInstance] saveSettings];
 }
 
+- (IBAction)loginToTwitterAccount:(id)sender{
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL fileURLWithPath:@"/System/Library/PreferencePanes/InternetAccounts.prefPane"]];
+}
 
 - (IBAction)makeATweet:(id)sender {
-    
-//    [[NSWorkspace sharedWorkspace] openURL:[NSURL fileURLWithPath:@"/System/Library/PreferencePanes/InternetAccounts.prefPane"]];
     
     if ([[self.textView string] length]<2)
         return;
