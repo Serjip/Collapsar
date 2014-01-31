@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment defaultVersion="1080" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
     </dependencies>
     <objects>
@@ -590,21 +591,21 @@
                 </menuItem>
             </items>
         </menu>
-        <window title="Collapsar" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="371">
+        <window title="Collapsar" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="371" customClass="INAppStoreWindow">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="585" height="495"/>
+            <rect key="contentRect" x="335" y="390" width="585" height="497"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1058"/>
             <view key="contentView" id="372">
-                <rect key="frame" x="0.0" y="0.0" width="585" height="495"/>
+                <rect key="frame" x="0.0" y="0.0" width="585" height="497"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <customView ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Hl-8o-7H9">
-                        <rect key="frame" x="0.0" y="0.0" width="585" height="69"/>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="8Hl-8o-7H9" customClass="ControllsView">
+                        <rect key="frame" x="0.0" y="0.0" width="585" height="50"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <popUpButton verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="azE-xe-OH6">
-                                <rect key="frame" x="18" y="21" width="155" height="26"/>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="azE-xe-OH6">
+                                <rect key="frame" x="18" y="12" width="155" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="JfW-CW-MV1"/>
@@ -618,8 +619,8 @@
                                     <action selector="fontPopupAction:" target="494" id="Suh-4A-lgm"/>
                                 </connections>
                             </popUpButton>
-                            <colorWell misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iPL-7j-m8k">
-                                <rect key="frame" x="246" y="23" width="24" height="23"/>
+                            <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="iPL-7j-m8k" customClass="BFPopoverColorWell">
+                                <rect key="frame" x="246" y="14" width="24" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="Ooj-cV-LFg"/>
@@ -630,8 +631,8 @@
                                     <action selector="colorAction:" target="494" id="jpX-lC-3N1"/>
                                 </connections>
                             </colorWell>
-                            <popUpButton verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qBj-rI-EVR">
-                                <rect key="frame" x="176" y="21" width="65" height="26"/>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qBj-rI-EVR">
+                                <rect key="frame" x="176" y="12" width="65" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="KQa-K2-YzL"/>
@@ -645,8 +646,8 @@
                                     <action selector="fontSizePopupAction:" target="494" id="OGX-Je-Ypk"/>
                                 </connections>
                             </popUpButton>
-                            <popUpButton verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xtk-Xj-6p7">
-                                <rect key="frame" x="433" y="21" width="135" height="26"/>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xtk-Xj-6p7">
+                                <rect key="frame" x="433" y="12" width="135" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="130" id="wsy-La-as2"/>
@@ -671,21 +672,21 @@
                             <constraint firstAttribute="trailing" secondItem="xtk-Xj-6p7" secondAttribute="trailing" constant="20" id="jgV-GB-sHl"/>
                         </constraints>
                     </customView>
-                    <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LCD-fp-Zee">
-                        <rect key="frame" x="0.0" y="130" width="585" height="365"/>
+                    <scrollView misplaced="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LCD-fp-Zee">
+                        <rect key="frame" x="8" y="193" width="569" height="296"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <clipView key="contentView" ambiguous="YES" misplaced="YES" id="OmJ-OG-K9i">
-                            <rect key="frame" x="0.0" y="0.0" width="585" height="365"/>
+                        <clipView key="contentView" misplaced="YES" id="OmJ-OG-K9i">
+                            <rect key="frame" x="0.0" y="0.0" width="569" height="296"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <textView ambiguous="YES" drawsBackground="NO" importsGraphics="NO" richText="NO" continuousSpellChecking="YES" allowsDocumentBackgroundColorChange="YES" allowsUndo="YES" usesRuler="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" spellingCorrection="YES" smartInsertDelete="YES" id="frz-mo-WWJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="585" height="365"/>
+                                <textView importsGraphics="NO" richText="NO" continuousSpellChecking="YES" allowsDocumentBackgroundColorChange="YES" allowsUndo="YES" usesRuler="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" spellingCorrection="YES" smartInsertDelete="YES" id="frz-mo-WWJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="569" height="296"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="585" height="365"/>
+                                    <size key="minSize" width="569" height="296"/>
                                     <size key="maxSize" width="971" height="10000000"/>
                                     <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="585" height="365"/>
+                                    <size key="minSize" width="569" height="296"/>
                                     <size key="maxSize" width="971" height="10000000"/>
                                 </textView>
                             </subviews>
@@ -696,30 +697,31 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="KRE-Tm-U1Q">
-                            <rect key="frame" x="569" y="0.0" width="16" height="365"/>
+                            <rect key="frame" x="553" y="0.0" width="16" height="296"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
-                    <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aDI-Cw-dWF" userLabel="Make a Tweet">
-                        <rect key="frame" x="506" y="83" width="77" height="32"/>
+                    <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aDI-Cw-dWF" userLabel="Make a Tweet" customClass="KBButton">
+                        <rect key="frame" x="241" y="152" width="104" height="35"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="65" id="6UV-Cs-iaK"/>
+                            <constraint firstAttribute="width" constant="100" id="6UV-Cs-iaK"/>
+                            <constraint firstAttribute="height" constant="30" id="g3U-rt-Sbe"/>
                         </constraints>
-                        <buttonCell key="cell" type="push" title="Tweet" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iMt-RX-xyQ">
+                        <buttonCell key="cell" type="bevel" title="Tweet" bezelStyle="regularSquare" imagePosition="below" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iMt-RX-xyQ" customClass="KBButtonCell">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
+                            <font key="font" metaFont="system" size="17"/>
                         </buttonCell>
                         <connections>
                             <action selector="makeATweet:" target="494" id="jF6-pb-12P"/>
                         </connections>
                     </button>
-                    <button ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aRx-yh-R19" userLabel="Show Preferences Button">
-                        <rect key="frame" x="20" y="90" width="21" height="21"/>
+                    <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aRx-yh-R19" userLabel="Show Preferences Button">
+                        <rect key="frame" x="280" y="122" width="25" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="21" id="QmO-KJ-Cau"/>
-                            <constraint firstAttribute="width" constant="21" id="eGf-Mo-Yra"/>
+                            <constraint firstAttribute="height" constant="25" id="QmO-KJ-Cau"/>
+                            <constraint firstAttribute="width" constant="25" id="eGf-Mo-Yra"/>
                         </constraints>
                         <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="NSActionTemplate" imagePosition="overlaps" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="trL-zr-hN6">
                             <behavior key="behavior" lightByContents="YES"/>
@@ -729,7 +731,31 @@
                             <action selector="showPreferences:" target="494" id="fCC-vl-Cr0"/>
                         </connections>
                     </button>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bcd-1b-VMQ">
+                        <rect key="frame" x="137" y="50" width="311" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" id="5tM-Xg-0yr">
+                            <font key="font" size="11" name="LucidaGrande"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="LCD-fp-Zee" firstAttribute="leading" secondItem="372" secondAttribute="leading" constant="8" id="3o3-Az-2c5"/>
+                    <constraint firstItem="8Hl-8o-7H9" firstAttribute="leading" secondItem="372" secondAttribute="leading" id="AIo-Bq-oyz"/>
+                    <constraint firstAttribute="trailing" secondItem="8Hl-8o-7H9" secondAttribute="trailing" id="CFI-Xw-Mja"/>
+                    <constraint firstAttribute="trailing" secondItem="LCD-fp-Zee" secondAttribute="trailing" constant="8" id="Idi-Xy-u6p"/>
+                    <constraint firstItem="aDI-Cw-dWF" firstAttribute="top" secondItem="LCD-fp-Zee" secondAttribute="bottom" constant="8" id="TEK-dB-Tzo"/>
+                    <constraint firstAttribute="centerX" secondItem="Bcd-1b-VMQ" secondAttribute="centerX" id="UhI-K8-mmc"/>
+                    <constraint firstItem="aRx-yh-R19" firstAttribute="top" secondItem="aDI-Cw-dWF" secondAttribute="bottom" constant="8" id="XkY-EV-psz"/>
+                    <constraint firstItem="8Hl-8o-7H9" firstAttribute="top" secondItem="Bcd-1b-VMQ" secondAttribute="bottom" id="Zs3-Cg-opG"/>
+                    <constraint firstAttribute="bottom" secondItem="8Hl-8o-7H9" secondAttribute="bottom" id="bQ7-9v-5Ta"/>
+                    <constraint firstItem="LCD-fp-Zee" firstAttribute="top" secondItem="372" secondAttribute="top" constant="8" id="or3-Le-15I"/>
+                    <constraint firstAttribute="centerX" secondItem="aRx-yh-R19" secondAttribute="centerX" id="sQK-hR-Ds1"/>
+                    <constraint firstItem="Bcd-1b-VMQ" firstAttribute="top" secondItem="aRx-yh-R19" secondAttribute="bottom" constant="2" id="wwo-7C-gFQ"/>
+                    <constraint firstAttribute="centerX" secondItem="aDI-Cw-dWF" secondAttribute="centerX" id="xMY-fd-51L"/>
+                </constraints>
             </view>
         </window>
         <customObject id="494" customClass="AppDelegate">
@@ -737,7 +763,9 @@
                 <outlet property="color" destination="iPL-7j-m8k" id="UUg-kz-UKn"/>
                 <outlet property="fontPopup" destination="azE-xe-OH6" id="vUn-25-arl"/>
                 <outlet property="heightOfSettings" destination="1Ay-JU-zM3" id="G1y-lS-Cep"/>
+                <outlet property="makeATweetBtn" destination="aDI-Cw-dWF" id="tO1-jM-qgu"/>
                 <outlet property="sizePopup" destination="qBj-rI-EVR" id="jaD-oU-ViP"/>
+                <outlet property="stateLabel" destination="Bcd-1b-VMQ" id="Qwk-pM-Pti"/>
                 <outlet property="textView" destination="frz-mo-WWJ" id="piP-6n-7e5"/>
                 <outlet property="userPopup" destination="xtk-Xj-6p7" id="R9M-aO-5iu"/>
                 <outlet property="window" destination="371" id="532"/>

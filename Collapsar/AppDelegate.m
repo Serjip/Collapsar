@@ -10,6 +10,7 @@
 #import <Accounts/Accounts.h>
 #import <Social/Social.h>
 #import "AppDelegate.h"
+#import "INAppStoreWindow.h"
 
 
 @implementation AppDelegate
@@ -18,43 +19,75 @@
 {
     // Insert code here to initialize your application
     
-    [self setUserlist];
+    [self checkUserTwitterAccounts];
     
     NSLog(@"Settings:%@",[Settings sharedInstance]);
     
+    //Adding fontnames to popup
     [self.fontPopup addItemsWithTitles:[[NSFontManager sharedFontManager] availableFontFamilies]];
 
-    
+    //adding fontsizes to popup
     for (int i=8; i<73; ++i)
         [self.sizePopup addItemWithTitle:[NSString stringWithFormat:@"%i pt",i]];
 
-    
+    //select saved font and size
     NSFont * font =[Settings sharedInstance].settings.font;
     [self.sizePopup selectItemWithTitle:[NSString stringWithFormat:@"%i pt",(int)font.pointSize]];
     [self.fontPopup selectItemWithTitle:font.familyName];
     [self.textView setFont:font];
     
+    //select saved color
     [self.color setColor:[Settings sharedInstance].settings.textColor];
     [self.textView setTextColor:[Settings sharedInstance].settings.textColor];
     
+    //Set size of preferences
+    [self.heightOfSettings setConstant:([Settings sharedInstance].settings.preferences)?50:0];
     
-//    [NSTimer scheduledTimerWithTimeInterval:5.0
-//                                     target:self
-//                                   selector:@selector(check)
-//                                   userInfo:nil
-//                                    repeats:YES];
+    
+    INAppStoreWindow *aWindow = (INAppStoreWindow *) [self window];
+	aWindow.titleBarHeight = 40.0;
+	aWindow.trafficLightButtonsLeftMargin = 13.0;
+	aWindow.titleBarDrawingBlock = ^(BOOL drawsAsMainWindow, CGRect drawingRect, CGPathRef clippingPath) {
+		CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
+		CGContextAddPath(ctx, clippingPath);
+		CGContextClip(ctx);
+        
+		NSGradient *gradient = nil;
+		if (drawsAsMainWindow) {
+			gradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithCalibratedRed:33/255.0 green:33/255.0 blue:33/255.0 alpha:1]
+													 endingColor:[NSColor colorWithCalibratedRed:33/255.0 green:33/255.0 blue:33/255.0 alpha:1]];
+			[[NSColor darkGrayColor] setFill];
+		} else {
+			// set the default non-main window gradient colors
+			gradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithCalibratedWhite:0.851f alpha:1]
+													 endingColor:[NSColor colorWithCalibratedWhite:0.929f alpha:1]];
+			[[NSColor colorWithCalibratedWhite:0.6f alpha:1] setFill];
+		}
+		[gradient drawInRect:drawingRect angle:90];
+#if !__has_feature(objc_arc)
+        [gradient release];
+#endif
+		NSRectFill(NSMakeRect(NSMinX(drawingRect), NSMinY(drawingRect), NSWidth(drawingRect), 1));
+	};
+    
+    //setting windows color & textView color
+    NSColor * windowColor=[NSColor colorWithCalibratedRed:58/255.0 green:58/255.0 blue:58/255.0 alpha:1];
+    [self.window setBackgroundColor:windowColor];
+    [self.textView setBackgroundColor:windowColor];
 }
 
+-(void)awakeFromNib{
+    [[self.makeATweetBtn cell] setKBButtonType:BButtonTypeSuccess];
+}
 
--(void) setUserlist{
+-(void) checkUserTwitterAccounts{
     _accountStore = [[ACAccountStore alloc] init];
     ACAccountType *twitterType = [self.accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
     
     if ([[self.accountStore accountsWithAccountType:twitterType] count]<1) {
-        NSLog(@"NEED TO LOGIN");
         
-        //[self.login setHidden:NO];
-        //[self.userPopup setHidden:YES];
+        [self.userPopup removeAllItems];
+    
     }else{
         
         for (id account in [self.accountStore accountsWithAccountType:twitterType]){
@@ -64,6 +97,11 @@
         //[self.login setHidden:YES];
         //[self.userPopup setHidden:NO];
     }
+}
+
+
+-(void) setMakeATweetButtonColor:(BOOL)flag{
+    
 }
 
 -(NSString*)trimMessageWithString:(NSString*)str{
@@ -193,18 +231,19 @@
 
 - (IBAction)colorAction:(id)sender {
     [self.textView setTextColor:[sender color]];
-    
     [Settings sharedInstance].settings.textColor=[sender color];
     [[Settings sharedInstance] saveSettings];
 }
 
 - (IBAction)showPreferences:(id)sender{
-    
     if([self.heightOfSettings constant]==0){
         [[self.heightOfSettings animator] setConstant:50];
+        [Settings sharedInstance].settings.preferences=YES;
     }else{
         [[self.heightOfSettings animator] setConstant:0];
+        [Settings sharedInstance].settings.preferences=NO;
     }
+    [[Settings sharedInstance] saveSettings];
 }
 
 
@@ -253,9 +292,7 @@
     [attrString drawInRect:NSMakeRect(0, 0, size.width, size.height)];
     [im unlockFocus];
     
-//    [self.imageView setImage:im];
-    //[[im TIFFRepresentation] writeToFile:@"/Users/serji/Desktop/foo.tiff" atomically:NO];
-    
     [self postImage:im withStatus:[self trimMessageWithString:[self.textView string]]];
 }
+
 @end
