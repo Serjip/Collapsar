@@ -13,13 +13,15 @@
 #import "INAppStoreWindow.h"
 
 
-@implementation AppDelegate
+@implementation AppDelegate{
+    NSTimer * _checkingUserLogin;
+}
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
     
-    [self checkUserTwitterAccounts];
+    [self checkUserTwitterAccounts:nil];
     
     NSLog(@"Settings:%@",[Settings sharedInstance]);
     
@@ -80,7 +82,8 @@
     
 }
 
--(BOOL) checkUserTwitterAccounts{
+-(BOOL) checkUserTwitterAccounts:(NSTimer*)timer{
+    NSLog(@"Check");
     _accountStore = [[ACAccountStore alloc] init];
     ACAccountType *twitterType = [self.accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
     
@@ -89,10 +92,17 @@
         [self.userPopup removeAllItems];
         [self chageActionTweetButton:NO];
         
+        
+        if (!_checkingUserLogin) {
+            _checkingUserLogin = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(checkUserTwitterAccounts:) userInfo:nil repeats:YES];
+        }
+        
         return NO;
     
     }else{
         
+        [_checkingUserLogin invalidate];
+        _checkingUserLogin = nil;
         [self chageActionTweetButton:YES];
         
         for (id account in [self.accountStore accountsWithAccountType:twitterType]){
@@ -104,17 +114,17 @@
 }
 
 -(void) chageActionTweetButton:(BOOL)flag{
-//    if (flag){
-//        [[self.makeATweetBtn cell] setKBButtonType:BButtonTypeSuccess];
-//        [self.makeATweetBtn setTitle:@"Tweet"];
-//        [self.makeATweetBtn setTarget:self];
-//        [self.makeATweetBtn setAction:@selector(makeATweetBtn)];
-//    }else{
-//        [[self.makeATweetBtn cell] setKBButtonType:BButtonTypeDanger];
-//        [self.makeATweetBtn setTitle:@"Login"];
-//        [self.makeATweetBtn setTarget:self];
-//        [self.makeATweetBtn setAction:@selector(loginToTwitterAccount:)];
-//    }
+    if (flag){
+        [[self.makeATweetBtn cell] setKBButtonType:BButtonTypeSuccess];
+        [self.makeATweetBtn setTitle:@"Tweet"];
+        [self.makeATweetBtn setTarget:self];
+        [self.makeATweetBtn setAction:@selector(makeATweet:)];
+    }else{
+        [[self.makeATweetBtn cell] setKBButtonType:BButtonTypeDanger];
+        [self.makeATweetBtn setTitle:@"Login"];
+        [self.makeATweetBtn setTarget:self];
+        [self.makeATweetBtn setAction:@selector(loginToTwitterAccount:)];
+    }
 }
 
 
@@ -269,6 +279,9 @@
     if ([[self.textView string] length]<2)
         return;
     
+    if (![self checkUserTwitterAccounts:nil])
+        return;
+    
     NSMutableArray * arr = [[NSMutableArray alloc] init];
     NSLayoutManager *layoutManager = [self.textView layoutManager];
     NSInteger numberOfLines, index, numberOfGlyphs = [layoutManager numberOfGlyphs];
@@ -308,6 +321,9 @@
     [im unlockFocus];
     
     [self postImage:im withStatus:[self trimMessageWithString:[self.textView string]]];
+}
+-(BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender{
+    return YES;
 }
 
 @end
