@@ -18,16 +18,15 @@
 @property (unsafe_unretained) IBOutlet NSTextView *textView;
 @property (weak) IBOutlet NSColorWell *color;
 
-@property (weak) IBOutlet NSButton *login;
 @property (nonatomic, strong) ACAccountStore *accountStore;
 @property (weak) IBOutlet NSLayoutConstraint *heightOfSettings;
 
 - (IBAction)fontPopupAction:(id)sender;
 - (IBAction)fontSizePopupAction:(id)sender;
 - (IBAction)colorAction:(id)sender;
-- (IBAction)usersPopupAction:(id)sender;
+
+- (IBAction)showPreferences:(id)sender;
+
 - (IBAction)makeATweet:(id)sender;
-- (IBAction)setImage:(id)sender;
-- (IBAction)loginAct:(id)sender;
 
 @end

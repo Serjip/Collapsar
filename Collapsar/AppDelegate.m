@@ -36,7 +36,15 @@
     
     [self.color setColor:[Settings sharedInstance].settings.textColor];
     [self.textView setTextColor:[Settings sharedInstance].settings.textColor];
+    
+    
+//    [NSTimer scheduledTimerWithTimeInterval:5.0
+//                                     target:self
+//                                   selector:@selector(check)
+//                                   userInfo:nil
+//                                    repeats:YES];
 }
+
 
 -(void) setUserlist{
     _accountStore = [[ACAccountStore alloc] init];
@@ -45,16 +53,16 @@
     if ([[self.accountStore accountsWithAccountType:twitterType] count]<1) {
         NSLog(@"NEED TO LOGIN");
         
-        [self.login setHidden:NO];
-        [self.userPopup setHidden:YES];
+        //[self.login setHidden:NO];
+        //[self.userPopup setHidden:YES];
     }else{
         
         for (id account in [self.accountStore accountsWithAccountType:twitterType]){
             [self.userPopup addItemWithTitle:[NSString stringWithFormat:@"@%@",[account username]]];
         }
         
-        [self.login setHidden:YES];
-        [self.userPopup setHidden:NO];
+        //[self.login setHidden:YES];
+        //[self.userPopup setHidden:NO];
     }
 }
 
@@ -190,10 +198,7 @@
     [[Settings sharedInstance] saveSettings];
 }
 
-- (IBAction)usersPopupAction:(id)sender {
-}
-
-- (IBAction)makeATweet:(id)sender{
+- (IBAction)showPreferences:(id)sender{
     
     if([self.heightOfSettings constant]==0){
         [[self.heightOfSettings animator] setConstant:50];
@@ -203,7 +208,9 @@
 }
 
 
-- (IBAction)setImage:(id)sender {
+- (IBAction)makeATweet:(id)sender {
+    
+//    [[NSWorkspace sharedWorkspace] openURL:[NSURL fileURLWithPath:@"/System/Library/PreferencePanes/InternetAccounts.prefPane"]];
     
     if ([[self.textView string] length]<2)
         return;
@@ -250,9 +257,5 @@
     //[[im TIFFRepresentation] writeToFile:@"/Users/serji/Desktop/foo.tiff" atomically:NO];
     
     [self postImage:im withStatus:[self trimMessageWithString:[self.textView string]]];
-}
-
-- (IBAction)loginAct:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL fileURLWithPath:@"/System/Library/PreferencePanes/InternetAccounts.prefPane"]];
 }
 @end

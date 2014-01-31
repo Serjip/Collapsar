@@ -17,12 +17,14 @@
     if (self) {
         _font=[coder decodeObjectForKey:@"font"];
         _textColor=[coder decodeObjectForKey:@"textColor"];
+        _preferences =[coder decodeBoolForKey:@"preferences"];
     }
     return self;
 }
 -(void)encodeWithCoder:(NSCoder *)aCoder{
     [aCoder encodeObject:_font      forKey:@"font"];
     [aCoder encodeObject:_textColor forKey:@"textColor"];
+    [aCoder encodeBool:_preferences forKey:@"preferences"];
 }
 
 @end
@@ -52,6 +54,7 @@
             
             self.settings.font=[NSFont fontWithName:@"Helvetica" size:15];
             self.settings.textColor = [NSColor blackColor];
+            self.settings.preferences = NO;
             
             [self saveSettings];
         }
@@ -67,8 +70,9 @@
 -(NSString *)description{
     NSMutableDictionary * list= [[NSMutableDictionary alloc]init];
     
-    [list setValue:self.settings.font        forKey:@"font"];
-    [list setValue:self.settings.textColor   forKey:@"textColor"];
+    [list setValue:self.settings.font           forKey:@"font"];
+    [list setValue:self.settings.textColor      forKey:@"textColor"];
+    [list setValue:@(self.settings.preferences) forKey:@"preferences"];
     
     return [NSString stringWithFormat:@"%@", list];
 }

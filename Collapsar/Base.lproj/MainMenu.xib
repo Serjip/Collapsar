@@ -25,7 +25,11 @@
                             <menuItem isSeparatorItem="YES" id="236">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Preferences…" keyEquivalent="," id="129"/>
+                            <menuItem title="Preferences…" keyEquivalent="," id="129">
+                                <connections>
+                                    <action selector="showPreferences:" target="494" id="Ceg-ve-f5P"/>
+                                </connections>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="143">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
@@ -57,66 +61,6 @@
                             <menuItem title="Quit Collapsar" keyEquivalent="q" id="136">
                                 <connections>
                                     <action selector="terminate:" target="-3" id="449"/>
-                                </connections>
-                            </menuItem>
-                        </items>
-                    </menu>
-                </menuItem>
-                <menuItem title="File" id="83">
-                    <menu key="submenu" title="File" id="81">
-                        <items>
-                            <menuItem title="New" keyEquivalent="n" id="82">
-                                <connections>
-                                    <action selector="newDocument:" target="-1" id="373"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Open…" keyEquivalent="o" id="72">
-                                <connections>
-                                    <action selector="openDocument:" target="-1" id="374"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Open Recent" id="124">
-                                <menu key="submenu" title="Open Recent" systemMenu="recentDocuments" id="125">
-                                    <items>
-                                        <menuItem title="Clear Menu" id="126">
-                                            <connections>
-                                                <action selector="clearRecentDocuments:" target="-1" id="127"/>
-                                            </connections>
-                                        </menuItem>
-                                    </items>
-                                </menu>
-                            </menuItem>
-                            <menuItem isSeparatorItem="YES" id="79">
-                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                            </menuItem>
-                            <menuItem title="Close" keyEquivalent="w" id="73">
-                                <connections>
-                                    <action selector="performClose:" target="-1" id="193"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Save…" keyEquivalent="s" id="75">
-                                <connections>
-                                    <action selector="saveDocument:" target="-1" id="362"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Revert to Saved" id="112">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="revertDocumentToSaved:" target="-1" id="364"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem isSeparatorItem="YES" id="74">
-                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                            </menuItem>
-                            <menuItem title="Page Setup..." keyEquivalent="P" id="77">
-                                <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
-                                <connections>
-                                    <action selector="runPageLayout:" target="-1" id="87"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Print…" keyEquivalent="p" id="78">
-                                <connections>
-                                    <action selector="print:" target="-1" id="86"/>
                                 </connections>
                             </menuItem>
                         </items>
@@ -653,52 +597,9 @@
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1058"/>
             <view key="contentView" id="372">
                 <rect key="frame" x="0.0" y="0.0" width="585" height="495"/>
-                <autoresizingMask key="autoresizingMask"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LCD-fp-Zee">
-                        <rect key="frame" x="0.0" y="0.0" width="585" height="495"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <clipView key="contentView" id="OmJ-OG-K9i">
-                            <rect key="frame" x="0.0" y="0.0" width="585" height="495"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <subviews>
-                                <textView importsGraphics="NO" richText="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="frz-mo-WWJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="585" height="495"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="585" height="495"/>
-                                    <size key="maxSize" width="971" height="10000000"/>
-                                    <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="585" height="495"/>
-                                    <size key="maxSize" width="971" height="10000000"/>
-                                </textView>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </clipView>
-                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="Y6L-3f-66g">
-                            <rect key="frame" x="-100" y="-100" width="87" height="18"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </scroller>
-                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="KRE-Tm-U1Q">
-                            <rect key="frame" x="569" y="0.0" width="16" height="495"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </scroller>
-                    </scrollView>
-                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aDI-Cw-dWF">
-                        <rect key="frame" x="504" y="12" width="77" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="65" id="6UV-Cs-iaK"/>
-                        </constraints>
-                        <buttonCell key="cell" type="push" title="Tweet" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iMt-RX-xyQ">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="setImage:" target="494" id="l3V-BR-8W8"/>
-                        </connections>
-                    </button>
-                    <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Hl-8o-7H9">
+                    <customView ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Hl-8o-7H9">
                         <rect key="frame" x="0.0" y="0.0" width="585" height="69"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
@@ -744,46 +645,77 @@
                                     <action selector="fontSizePopupAction:" target="494" id="OGX-Je-Ypk"/>
                                 </connections>
                             </popUpButton>
-                            <popUpButton hidden="YES" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xtk-Xj-6p7">
-                                <rect key="frame" x="276" y="21" width="135" height="26"/>
+                            <popUpButton verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xtk-Xj-6p7">
+                                <rect key="frame" x="433" y="21" width="135" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="130" id="PwI-ZF-VyC"/>
+                                    <constraint firstAttribute="width" constant="130" id="wsy-La-as2"/>
                                 </constraints>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="CrL-6M-ncz">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="menu"/>
                                     <menu key="menu" title="OtherViews" id="fLD-gs-1cP"/>
                                 </popUpButtonCell>
                             </popUpButton>
-                            <button hidden="YES" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p6R-gl-HOG">
-                                <rect key="frame" x="272" y="16" width="82" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Login" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9C4-Cw-uCu">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="loginAct:" target="494" id="c6F-fb-Cdf"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="height" id="1Ay-JU-zM3"/>
+                            <constraint firstAttribute="height" constant="50" id="1Ay-JU-zM3"/>
                             <constraint firstAttribute="centerY" secondItem="iPL-7j-m8k" secondAttribute="centerY" id="2ig-0E-Qgb"/>
                             <constraint firstAttribute="centerY" secondItem="qBj-rI-EVR" secondAttribute="centerY" id="6gJ-9C-sKF"/>
                             <constraint firstItem="azE-xe-OH6" firstAttribute="leading" secondItem="8Hl-8o-7H9" secondAttribute="leading" constant="20" id="JqI-KV-ZGd"/>
-                            <constraint firstItem="p6R-gl-HOG" firstAttribute="leading" secondItem="iPL-7j-m8k" secondAttribute="trailing" constant="8" id="MPn-ck-yQx"/>
-                            <constraint firstItem="xtk-Xj-6p7" firstAttribute="leading" secondItem="iPL-7j-m8k" secondAttribute="trailing" constant="8" id="Sj9-R4-OX2"/>
+                            <constraint firstItem="xtk-Xj-6p7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iPL-7j-m8k" secondAttribute="trailing" constant="8" symbolic="YES" id="UT6-ma-xtN"/>
                             <constraint firstItem="qBj-rI-EVR" firstAttribute="leading" secondItem="azE-xe-OH6" secondAttribute="trailing" constant="8" id="W3J-iE-T9V"/>
-                            <constraint firstAttribute="centerY" secondItem="p6R-gl-HOG" secondAttribute="centerY" id="XkJ-gk-EWf"/>
                             <constraint firstAttribute="centerY" secondItem="azE-xe-OH6" secondAttribute="centerY" id="YCG-KT-Bxc"/>
                             <constraint firstAttribute="centerY" secondItem="xtk-Xj-6p7" secondAttribute="centerY" id="cAh-Fa-Eog"/>
                             <constraint firstItem="iPL-7j-m8k" firstAttribute="leading" secondItem="qBj-rI-EVR" secondAttribute="trailing" constant="8" id="f6d-02-O4q"/>
+                            <constraint firstAttribute="trailing" secondItem="xtk-Xj-6p7" secondAttribute="trailing" constant="20" id="jgV-GB-sHl"/>
                         </constraints>
                     </customView>
-                    <button translatesAutoresizingMaskIntoConstraints="NO" id="aRx-yh-R19">
-                        <rect key="frame" x="20" y="19" width="21" height="21"/>
+                    <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LCD-fp-Zee">
+                        <rect key="frame" x="0.0" y="130" width="585" height="365"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <clipView key="contentView" ambiguous="YES" misplaced="YES" id="OmJ-OG-K9i">
+                            <rect key="frame" x="0.0" y="0.0" width="585" height="365"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <textView ambiguous="YES" drawsBackground="NO" importsGraphics="NO" richText="NO" continuousSpellChecking="YES" allowsDocumentBackgroundColorChange="YES" allowsUndo="YES" usesRuler="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" spellingCorrection="YES" smartInsertDelete="YES" id="frz-mo-WWJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="585" height="365"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <size key="minSize" width="585" height="365"/>
+                                    <size key="maxSize" width="971" height="10000000"/>
+                                    <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <size key="minSize" width="585" height="365"/>
+                                    <size key="maxSize" width="971" height="10000000"/>
+                                </textView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </clipView>
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="Y6L-3f-66g">
+                            <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="KRE-Tm-U1Q">
+                            <rect key="frame" x="569" y="0.0" width="16" height="365"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                    </scrollView>
+                    <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aDI-Cw-dWF" userLabel="Make a Tweet">
+                        <rect key="frame" x="506" y="83" width="77" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="65" id="6UV-Cs-iaK"/>
+                        </constraints>
+                        <buttonCell key="cell" type="push" title="Tweet" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iMt-RX-xyQ">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="makeATweet:" target="494" id="jF6-pb-12P"/>
+                        </connections>
+                    </button>
+                    <button ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aRx-yh-R19" userLabel="Show Preferences Button">
+                        <rect key="frame" x="20" y="90" width="21" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="QmO-KJ-Cau"/>
@@ -794,23 +726,10 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="makeATweet:" target="494" id="Nye-dQ-iVv"/>
+                            <action selector="showPreferences:" target="494" id="fCC-vl-Cr0"/>
                         </connections>
                     </button>
                 </subviews>
-                <constraints>
-                    <constraint firstItem="8Hl-8o-7H9" firstAttribute="leading" secondItem="372" secondAttribute="leading" id="36A-n4-iaw"/>
-                    <constraint firstItem="aRx-yh-R19" firstAttribute="leading" secondItem="372" secondAttribute="leading" constant="20" id="7L1-6c-N0j"/>
-                    <constraint firstAttribute="bottom" secondItem="8Hl-8o-7H9" secondAttribute="bottom" id="ARy-sZ-KUJ"/>
-                    <constraint firstAttribute="trailing" secondItem="LCD-fp-Zee" secondAttribute="trailing" id="Dv0-kD-eKr"/>
-                    <constraint firstItem="aDI-Cw-dWF" firstAttribute="top" secondItem="LCD-fp-Zee" secondAttribute="bottom" constant="-40" id="OOy-zg-N7h"/>
-                    <constraint firstItem="LCD-fp-Zee" firstAttribute="leading" secondItem="372" secondAttribute="leading" id="QnL-Bj-Nfm"/>
-                    <constraint firstItem="LCD-fp-Zee" firstAttribute="top" secondItem="372" secondAttribute="top" id="cDx-Bw-OG7"/>
-                    <constraint firstAttribute="trailing" secondItem="aDI-Cw-dWF" secondAttribute="trailing" constant="10" id="fp3-Ka-kqf"/>
-                    <constraint firstItem="8Hl-8o-7H9" firstAttribute="top" secondItem="LCD-fp-Zee" secondAttribute="bottom" id="uMj-Or-D6a"/>
-                    <constraint firstAttribute="trailing" secondItem="8Hl-8o-7H9" secondAttribute="trailing" id="uzz-LP-WEB"/>
-                    <constraint firstItem="aRx-yh-R19" firstAttribute="top" secondItem="LCD-fp-Zee" secondAttribute="bottom" constant="-40" id="wwP-4S-Vtp"/>
-                </constraints>
             </view>
         </window>
         <customObject id="494" customClass="AppDelegate">
@@ -818,7 +737,6 @@
                 <outlet property="color" destination="iPL-7j-m8k" id="UUg-kz-UKn"/>
                 <outlet property="fontPopup" destination="azE-xe-OH6" id="vUn-25-arl"/>
                 <outlet property="heightOfSettings" destination="1Ay-JU-zM3" id="G1y-lS-Cep"/>
-                <outlet property="login" destination="p6R-gl-HOG" id="a3f-mP-OtJ"/>
                 <outlet property="sizePopup" destination="qBj-rI-EVR" id="jaD-oU-ViP"/>
                 <outlet property="textView" destination="frz-mo-WWJ" id="piP-6n-7e5"/>
                 <outlet property="userPopup" destination="xtk-Xj-6p7" id="R9M-aO-5iu"/>

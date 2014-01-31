@@ -130,8 +130,7 @@
 		D20AB5E218940A6E00450202 /* Collapsar */ = {
 			isa = PBXGroup;
 			children = (
-				D21879CA189550C3003F295B /* Settings.h */,
-				D21879CB189550C3003F295B /* Settings.m */,
+				D21F1483189BC08300A9968B /* Settings */,
 				D20AB5EE18940A6E00450202 /* AppDelegate.h */,
 				D20AB5EF18940A6E00450202 /* AppDelegate.m */,
 				D20AB5F118940A6E00450202 /* MainMenu.xib */,
@@ -169,6 +168,15 @@
 				D20AB60318940A6E00450202 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D21F1483189BC08300A9968B /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				D21879CA189550C3003F295B /* Settings.h */,
+				D21879CB189550C3003F295B /* Settings.m */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -406,6 +414,7 @@
 				GCC_PREFIX_HEADER = "Collapsar/Collapsar-Prefix.pch";
 				INFOPLIST_FILE = "Collapsar/Collapsar-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -419,6 +428,7 @@
 				GCC_PREFIX_HEADER = "Collapsar/Collapsar-Prefix.pch";
 				INFOPLIST_FILE = "Collapsar/Collapsar-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

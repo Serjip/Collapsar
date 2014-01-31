@@ -12,6 +12,7 @@
 
 @property NSFont *font;
 @property NSColor *textColor;
+@property BOOL preferences;
 
 @end
 
