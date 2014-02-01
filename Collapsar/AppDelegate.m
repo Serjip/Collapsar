@@ -25,7 +25,7 @@
     //Checking twitter accounts
     [self checkUserTwitterAccounts:nil];
     
-    NSLog(@"Settings:%@",[Settings sharedInstance]);
+    //NSLog(@"Settings:%@",[Settings sharedInstance]);
     
     //Adding fontnames to popup
     [self.fontPopup addItemsWithTitles:[[NSFontManager sharedFontManager] availableFontFamilies]];
@@ -155,7 +155,7 @@
     }
     str=[str stringByAppendingString:@" #Collapsar"];
     
-    NSLog(@"%@",str);
+//    NSLog(@"%@",str);
     return str;
 }
 
