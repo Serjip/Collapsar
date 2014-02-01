@@ -134,26 +134,20 @@
 
 -(NSString*)trimMessageWithString:(NSString*)str{
     
-    
-    
     NSError *error = nil;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"#(\\w+)" options:0 error:&error];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(@(\\w+)|#(\\w+))" options:0 error:&error];
     NSArray *matches = [regex matchesInString:str
                                       options:0
                                         range:NSMakeRange(0, str.length)];
     
+    NSString * hashtags=@"";
+    
     for (NSTextCheckingResult *match in matches) {
         NSRange wordRange = [match rangeAtIndex:1];
-        NSString* word = [str substringWithRange:wordRange];
-        NSLog(@"Found tag %@", word);
+        hashtags = [NSString stringWithFormat:@"%@ %@",hashtags,[str substringWithRange:wordRange]];
     }
     
-    
-    
-    
-    
-    
-    
+    str = [NSString stringWithFormat:@"%@ %@",hashtags,str];
     
     if ([str length]>(140-55)) {
         str=[str substringToIndex:140-55];
@@ -161,7 +155,7 @@
     }
     str=[str stringByAppendingString:@" #Collapsar"];
     
-    NSLog(@"%li",str.length);
+    NSLog(@"%@",str);
     return str;
 }
 
@@ -353,6 +347,7 @@
     [im lockFocus];
     [attrString drawInRect:NSMakeRect(0, 0, size.width, size.height)];
     [im unlockFocus];
+    
     
     [self postImage:im withStatus:[self trimMessageWithString:[self.textView string]]];
 }
