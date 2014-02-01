@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C5A4B21BB15248139FAB6C06 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8A429FB9FA1445983AB71D2 /* libPods.a */; };
+		D20A75B0189CFF8400CFE4CE /* Action.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D20A75AF189CFF8400CFE4CE /* Action.pdf */; };
 		D20AB5DD18940A6E00450202 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D20AB5DC18940A6E00450202 /* Cocoa.framework */; };
 		D20AB5E718940A6E00450202 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D20AB5E518940A6E00450202 /* InfoPlist.strings */; };
 		D20AB5E918940A6E00450202 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D20AB5E818940A6E00450202 /* main.m */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D20A75AF189CFF8400CFE4CE /* Action.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Action.pdf; sourceTree = "<group>"; };
 		D20AB5D918940A6E00450202 /* Collapsar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Collapsar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D20AB5DC18940A6E00450202 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D20AB5DF18940A6E00450202 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -151,6 +153,7 @@
 				D2FDC4C5189BD3D9002FF5C9 /* KBButton */,
 				D21F1483189BC08300A9968B /* Settings */,
 				D20AB5EE18940A6E00450202 /* AppDelegate.h */,
+				D20A75AF189CFF8400CFE4CE /* Action.pdf */,
 				D20AB5EF18940A6E00450202 /* AppDelegate.m */,
 				D20AB5F118940A6E00450202 /* MainMenu.xib */,
 				D2C86E5D189BDF9B0079EC32 /* ControllsView */,
@@ -303,6 +306,7 @@
 				D20AB5F518940A6E00450202 /* Images.xcassets in Resources */,
 				D20AB5ED18940A6E00450202 /* Credits.rtf in Resources */,
 				D20AB5F318940A6E00450202 /* MainMenu.xib in Resources */,
+				D20A75B0189CFF8400CFE4CE /* Action.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,6 +499,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Collapsar/Collapsar-Prefix.pch";
 				INFOPLIST_FILE = "Collapsar/Collapsar-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
@@ -510,6 +515,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Collapsar/Collapsar-Prefix.pch";
 				INFOPLIST_FILE = "Collapsar/Collapsar-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;

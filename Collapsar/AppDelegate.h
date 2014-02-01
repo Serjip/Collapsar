@@ -10,7 +10,7 @@
 #import "Settings.h"
 #import "KBButton.h"
 
-@interface AppDelegate : NSObject <NSApplicationDelegate,NSSharingServicePickerDelegate>
+@interface AppDelegate : NSObject <NSApplicationDelegate,NSSharingServicePickerDelegate,NSUserNotificationCenterDelegate>
 @property (weak) IBOutlet NSPopUpButton *fontPopup;
 @property (weak) IBOutlet NSPopUpButton *sizePopup;
 @property (weak) IBOutlet NSPopUpButton *userPopup;

@@ -19,8 +19,10 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    // Insert code here to initialize your application
+    //set notification delegate
+    [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
     
+    //Checking twitter accounts
     [self checkUserTwitterAccounts:nil];
     
     NSLog(@"Settings:%@",[Settings sharedInstance]);
@@ -78,8 +80,10 @@
     [self.textView setBackgroundColor:windowColor];
 }
 
--(void)awakeFromNib{
-    
+// show notifications
+- (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center
+     shouldPresentNotification:(NSUserNotification *)notification{
+    return YES;
 }
 
 -(BOOL) checkUserTwitterAccounts:(NSTimer*)timer{
@@ -130,11 +134,34 @@
 
 -(NSString*)trimMessageWithString:(NSString*)str{
     
+    
+    
+    NSError *error = nil;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"#(\\w+)" options:0 error:&error];
+    NSArray *matches = [regex matchesInString:str
+                                      options:0
+                                        range:NSMakeRange(0, str.length)];
+    
+    for (NSTextCheckingResult *match in matches) {
+        NSRange wordRange = [match rangeAtIndex:1];
+        NSString* word = [str substringWithRange:wordRange];
+        NSLog(@"Found tag %@", word);
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     if ([str length]>(140-55)) {
         str=[str substringToIndex:140-55];
         str=[str stringByAppendingString:@"..."];
     }
     str=[str stringByAppendingString:@" #Collapsar"];
+    
+    NSLog(@"%li",str.length);
     return str;
 }
 
@@ -160,6 +187,13 @@
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.textView setString:@""];
+                    
+                    NSUserNotification *notification = [[NSUserNotification alloc] init];
+                    notification.title = @"Tweet has been posted";
+                    //notification.informativeText = @"";
+                    
+                    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+                    
                 });
                 
             }else {

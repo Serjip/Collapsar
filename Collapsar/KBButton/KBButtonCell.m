@@ -29,7 +29,7 @@
             return [NSColor colorWithCalibratedRed:0.18f green:0.59f blue:0.71f alpha:1.00f];
             break;
         case BButtonTypeSuccess:
-            return [NSColor colorWithCalibratedRed:0.32f green:0.64f blue:0.32f alpha:1.00f];
+            return [NSColor colorWithCalibratedRed:0.0f green:0.64f blue:0.36f alpha:1.00f];
             break;
         case BButtonTypeWarning:
             return [NSColor colorWithCalibratedRed:0.97f green:0.58f blue:0.02f alpha:1.00f];
