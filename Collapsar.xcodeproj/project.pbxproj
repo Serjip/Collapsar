@@ -153,7 +153,6 @@
 				D2FDC4C5189BD3D9002FF5C9 /* KBButton */,
 				D21F1483189BC08300A9968B /* Settings */,
 				D20AB5EE18940A6E00450202 /* AppDelegate.h */,
-				D20A75AF189CFF8400CFE4CE /* Action.pdf */,
 				D20AB5EF18940A6E00450202 /* AppDelegate.m */,
 				D20AB5F118940A6E00450202 /* MainMenu.xib */,
 				D2C86E5D189BDF9B0079EC32 /* ControllsView */,
@@ -166,6 +165,7 @@
 		D20AB5E318940A6E00450202 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D20A75AF189CFF8400CFE4CE /* Action.pdf */,
 				D20AB5E418940A6E00450202 /* Collapsar-Info.plist */,
 				D20AB5E518940A6E00450202 /* InfoPlist.strings */,
 				D20AB5E818940A6E00450202 /* main.m */,

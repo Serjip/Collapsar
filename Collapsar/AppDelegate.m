@@ -13,9 +13,7 @@
 #import "INAppStoreWindow.h"
 
 
-@implementation AppDelegate{
-    NSTimer * _checkingUserLogin;
-}
+@implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -78,6 +76,16 @@
     NSColor * windowColor=[NSColor colorWithCalibratedRed:58/255.0 green:58/255.0 blue:58/255.0 alpha:1];
     [self.window setBackgroundColor:windowColor];
     [self.textView setBackgroundColor:windowColor];
+    
+    
+    
+    
+    //Added observer changing accounts
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(checkUserTwitterAccounts:)
+                                                 name:ACAccountStoreDidChangeNotification
+                                               object:nil];
+    
 }
 
 // show notifications
@@ -86,28 +94,25 @@
     return YES;
 }
 
--(BOOL) checkUserTwitterAccounts:(NSTimer*)timer{
+-(BOOL) checkUserTwitterAccounts:(NSNotification *) notification{
     NSLog(@"Check");
     _accountStore = [[ACAccountStore alloc] init];
     ACAccountType *twitterType = [self.accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
     
+    [self.userPopup removeAllItems];
+    
     if ([[self.accountStore accountsWithAccountType:twitterType] count]<1) {
         
-        [self.userPopup removeAllItems];
+        [self.stateLabel setStringValue:@"Sorry, no Twitter accounts were found! Please login."];
+        
         [self chageActionTweetButton:NO];
-        
-        
-        if (!_checkingUserLogin) {
-            _checkingUserLogin = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(checkUserTwitterAccounts:) userInfo:nil repeats:YES];
-        }
         
         return NO;
     
     }else{
         
-        [_checkingUserLogin invalidate];
-        _checkingUserLogin = nil;
         [self chageActionTweetButton:YES];
+        [self.stateLabel setStringValue:@""];
         
         for (id account in [self.accountStore accountsWithAccountType:twitterType]){
             [self.userPopup addItemWithTitle:[NSString stringWithFormat:@"@%@",[account username]]];
