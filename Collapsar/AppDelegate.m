@@ -15,6 +15,16 @@
 
 @implementation AppDelegate
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _accountStore = [[ACAccountStore alloc] init];
+    }
+    return self;
+}
+
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     //set notification delegate
@@ -94,32 +104,42 @@
     return YES;
 }
 
--(BOOL) checkUserTwitterAccounts:(NSNotification *) notification{
+-(void) checkUserTwitterAccounts:(NSNotification *) notification{
     NSLog(@"Check");
-    _accountStore = [[ACAccountStore alloc] init];
     ACAccountType *twitterType = [self.accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
     
     [self.userPopup removeAllItems];
     
-    if ([[self.accountStore accountsWithAccountType:twitterType] count]<1) {
-        
-        [self.stateLabel setStringValue:@"Sorry, no Twitter accounts were found! Please login."];
-        
-        [self chageActionTweetButton:NO];
-        
-        return NO;
     
-    }else{
-        
-        [self chageActionTweetButton:YES];
-        [self.stateLabel setStringValue:@""];
-        
-        for (id account in [self.accountStore accountsWithAccountType:twitterType]){
-            [self.userPopup addItemWithTitle:[NSString stringWithFormat:@"@%@",[account username]]];
+    ACAccountStoreRequestAccessCompletionHandler accountStoreHandler =
+    ^(BOOL granted, NSError *error) {
+        if (granted) {
+            
+            if ([[self.accountStore accountsWithAccountType:twitterType] count]<1) {
+                [self chageActionTweetButton:NO];
+                [self.stateLabel setStringValue:@"Sorry, no Twitter accounts were found! Please login."];
+                
+            }else{
+                
+                [self chageActionTweetButton:YES];
+                [self.stateLabel setStringValue:@""];
+                
+                for (id account in [self.accountStore accountsWithAccountType:twitterType]){
+                    [self.userPopup addItemWithTitle:[NSString stringWithFormat:@"@%@",[account username]]];
+                }
+            }
+            
         }
-        
-        return YES;
-    }
+        else {
+            NSLog(@"[ERROR] An error occurred while asking for user authorization: %@",[error localizedDescription]);
+            [self chageActionTweetButton:NO];
+            [self.stateLabel setStringValue:@"Please allow access to twitter account."];
+        }
+    };
+    
+    [self.accountStore requestAccessToAccountsWithType:twitterType
+                                               options:NULL
+                                            completion:accountStoreHandler];
 }
 
 -(void) chageActionTweetButton:(BOOL)flag{
@@ -129,6 +149,7 @@
         [self.makeATweetBtn setTarget:self];
         [self.makeATweetBtn setAction:@selector(makeATweet:)];
     }else{
+        NSLog(@"Change button type");
         [[self.makeATweetBtn cell] setKBButtonType:BButtonTypeDanger];
         [self.makeATweetBtn setTitle:@"Login"];
         [self.makeATweetBtn setTarget:self];
@@ -234,7 +255,7 @@
                              withName:@"media[]"
                                  type:@"image/png"
                              filename:@"image.png"];
-            [request setAccount:[self currentAccount]];
+            [request setAccount:[self currentAccount:twitterType]];
             [request performRequestWithHandler:requestHandler];
         }
         else {
@@ -248,9 +269,7 @@
                                             completion:accountStoreHandler];
 }
 
--(ACAccount*)currentAccount{
-    ACAccountType *twitterType =
-    [self.accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+-(ACAccount*)currentAccount:(ACAccountType*)twitterType{
     NSArray *accounts = [self.accountStore accountsWithAccountType:twitterType];
     
     ACAccount * currentAcc;
@@ -312,8 +331,13 @@
     if ([[self.textView string] length]<2)
         return;
     
-    if (![self checkUserTwitterAccounts:nil])
+    ACAccountType *twitterType = [self.accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+    if ([[self.accountStore accountsWithAccountType:twitterType] count]<1){
+            [self.stateLabel setStringValue:@"No twitter accounts were found!"];
         return;
+    }else{
+        [self.stateLabel setStringValue:@""];
+    }
     
     NSMutableArray * arr = [[NSMutableArray alloc] init];
     NSLayoutManager *layoutManager = [self.textView layoutManager];
