@@ -18,6 +18,7 @@
         _font=[coder decodeObjectForKey:@"font"];
         _textColor=[coder decodeObjectForKey:@"textColor"];
         _preferences =[coder decodeBoolForKey:@"preferences"];
+        _firstTweet =[coder decodeBoolForKey:@"firstTweet"];
     }
     return self;
 }
@@ -25,6 +26,8 @@
     [aCoder encodeObject:_font      forKey:@"font"];
     [aCoder encodeObject:_textColor forKey:@"textColor"];
     [aCoder encodeBool:_preferences forKey:@"preferences"];
+    
+    [aCoder encodeBool:_firstTweet  forKey:@"firstTweet"];
 }
 
 @end
@@ -55,6 +58,7 @@
             self.settings.font=[NSFont fontWithName:@"Helvetica" size:15];
             self.settings.textColor = [NSColor blackColor];
             self.settings.preferences = NO;
+            self.settings.firstTweet = NO;
             
             [self saveSettings];
         }
@@ -73,6 +77,7 @@
     [list setValue:self.settings.font           forKey:@"font"];
     [list setValue:self.settings.textColor      forKey:@"textColor"];
     [list setValue:@(self.settings.preferences) forKey:@"preferences"];
+    [list setValue:@(self.settings.firstTweet)  forKey:@"firstTweet"];
     
     return [NSString stringWithFormat:@"%@", list];
 }

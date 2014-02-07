@@ -214,6 +214,22 @@
                     
                     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
                     
+                    if (![Settings sharedInstance].settings.firstTweet){
+                        NSAlert * alert=[[NSAlert alloc] init];
+                        [alert addButtonWithTitle:@"Yes"];
+                        [alert addButtonWithTitle:@"No, thanks"];
+                        [alert setMessageText:@"Yep! Your first tweet successfully posted!"];
+                        [alert setInformativeText:@"Would you like to follow us on twitter (@HackStoreTeam) to know more about our apps and updates?"];
+                    
+                    
+                        [alert beginSheetModalForWindow:self.window
+                                          modalDelegate:self
+                                         didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:)
+                                            contextInfo:nil];
+                        
+                        [Settings sharedInstance].settings.firstTweet=YES;
+                        [[Settings sharedInstance]saveSettings];
+                    }
                 });
                 
             }else {
@@ -267,6 +283,13 @@
     [self.accountStore requestAccessToAccountsWithType:twitterType
                                                options:NULL
                                             completion:accountStoreHandler];
+}
+
+
+- (void)alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
+    if (returnCode == NSAlertFirstButtonReturn) {
+        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://twitter.com/HackStoreTeam"]];
+    }
 }
 
 -(ACAccount*)currentAccount:(ACAccountType*)twitterType{

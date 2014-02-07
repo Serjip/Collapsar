@@ -12,7 +12,7 @@
 		D20AB5DD18940A6E00450202 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D20AB5DC18940A6E00450202 /* Cocoa.framework */; };
 		D20AB5E718940A6E00450202 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D20AB5E518940A6E00450202 /* InfoPlist.strings */; };
 		D20AB5E918940A6E00450202 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D20AB5E818940A6E00450202 /* main.m */; };
-		D20AB5ED18940A6E00450202 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D20AB5EB18940A6E00450202 /* Credits.rtf */; };
+		D20AB5ED18940A6E00450202 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = D20AB5EB18940A6E00450202 /* Credits.html */; };
 		D20AB5F018940A6E00450202 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D20AB5EF18940A6E00450202 /* AppDelegate.m */; };
 		D20AB5F318940A6E00450202 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D20AB5F118940A6E00450202 /* MainMenu.xib */; };
 		D20AB5F518940A6E00450202 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D20AB5F418940A6E00450202 /* Images.xcassets */; };
@@ -51,7 +51,7 @@
 		D20AB5E618940A6E00450202 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D20AB5E818940A6E00450202 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D20AB5EA18940A6E00450202 /* Collapsar-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Collapsar-Prefix.pch"; sourceTree = "<group>"; };
-		D20AB5EC18940A6E00450202 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		D20AB5EC18940A6E00450202 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = en.lproj/Credits.html; sourceTree = "<group>"; };
 		D20AB5EE18940A6E00450202 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D20AB5EF18940A6E00450202 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		D20AB5F218940A6E00450202 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -170,7 +170,7 @@
 				D20AB5E518940A6E00450202 /* InfoPlist.strings */,
 				D20AB5E818940A6E00450202 /* main.m */,
 				D20AB5EA18940A6E00450202 /* Collapsar-Prefix.pch */,
-				D20AB5EB18940A6E00450202 /* Credits.rtf */,
+				D20AB5EB18940A6E00450202 /* Credits.html */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -304,7 +304,7 @@
 			files = (
 				D20AB5E718940A6E00450202 /* InfoPlist.strings in Resources */,
 				D20AB5F518940A6E00450202 /* Images.xcassets in Resources */,
-				D20AB5ED18940A6E00450202 /* Credits.rtf in Resources */,
+				D20AB5ED18940A6E00450202 /* Credits.html in Resources */,
 				D20AB5F318940A6E00450202 /* MainMenu.xib in Resources */,
 				D20A75B0189CFF8400CFE4CE /* Action.pdf in Resources */,
 			);
@@ -395,12 +395,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		D20AB5EB18940A6E00450202 /* Credits.rtf */ = {
+		D20AB5EB18940A6E00450202 /* Credits.html */ = {
 			isa = PBXVariantGroup;
 			children = (
 				D20AB5EC18940A6E00450202 /* en */,
 			);
-			name = Credits.rtf;
+			name = Credits.html;
 			sourceTree = "<group>";
 		};
 		D20AB5F118940A6E00450202 /* MainMenu.xib */ = {

@@ -13,6 +13,7 @@
 @property NSFont *font;
 @property NSColor *textColor;
 @property BOOL preferences;
+@property BOOL firstTweet;
 
 @end
 
