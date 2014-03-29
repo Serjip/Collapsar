@@ -1,0 +1,13 @@
+PODS:
+  - BFColorPickerPopover (0.0.1)
+  - INAppStoreWindow (1.4)
+
+DEPENDENCIES:
+  - BFColorPickerPopover
+  - INAppStoreWindow (~> 1.4)
+
+SPEC CHECKSUMS:
+  BFColorPickerPopover: 909ab85fb9852b2446d36fc80759295400ea8ecd
+  INAppStoreWindow: 5a9eedcedc3ec95e7d8a12292de584b760d96c76
+
+COCOAPODS: 0.29.0
